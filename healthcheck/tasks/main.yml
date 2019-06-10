@@ -1,0 +1,24 @@
+---
+# tasks file for healthcheck
+- name: RAM USAGE IN PERCENTAGE
+  script: ram.sh
+  register: result
+  ignore_errors: yes
+- debug: var=result
+- name: CPU USAGE IN PERCENTAGE
+  script: cpu.sh
+  register: cpu
+- debug: var=cpu
+- name: HARD DISK (ROOT PARTION) IN PERCENTAGE 
+  script: hard_disk.sh 
+  register: hdd
+- debug: var=hdd 
+- slack:
+    token: "{{ slack_token }}"  
+    #domain: https://prodevansglobal.slack.com
+    msg: "{{ansible_hostname}}: {{ result.stdout}}\n \t\t\t\t\t\t\t\t\t\t{{ hdd.stdout }}\n \t\t\t\t\t\t\t\t\t\t CPU USAGE IN PERCENTAGE IS: {{ cpu.stdout }}"
+ 
+
+
+
+

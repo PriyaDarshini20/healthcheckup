@@ -1,0 +1,4 @@
+---
+# vars file for healthcheck
+hostname: localhost
+slack_token: TK0RTPM6X/BKEG76CT0/ScGyG0ubpXhRaPKKOLxT3CSp
